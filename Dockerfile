@@ -82,6 +82,9 @@ RUN add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb
 RUN apt-get install -y librealsense2-dkms
 RUN apt-get install -y librealsense2-utils
 RUN apt-get install -y librealsense2-dbg
+RUN apt-get install -y ros-foxy-realsense2-camera
+RUN apt-get install -y ros-foxy-robot-localization
+RUN apt-get install -y ros-foxy-rtabmap-ros
 
 #End of ROS2 Installation
 
@@ -91,13 +94,12 @@ ENV NVIDIA_VISIBLE_DEVICES \
 ENV NVIDIA_DRIVER_CAPABILITIES \
     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
-#Make ROS2 Workspace, build tutorials
+#Make ROS2 Workspace, install packages
 WORKDIR /root/dd_ws/src
 #RUN git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
-RUN git clone https://github.com/IntelRealSense/realsense-ros.git -b foxy
+RUN git clone https://github.com/introlab/rtabmap.git rtabmap
+RUN git clone --branch ros2 https://github.com/introlab/rtabmap_ros.git rtabmap_ros
 RUN git clone https://github.com/ros2-gbp/cartographer-release.git -b release/foxy/cartographer
-
-RUN apt-get install -y ros-foxy-robot-localization
 
 WORKDIR /root/dd_ws
 RUN apt-get install python3-rosdep -y
@@ -106,7 +108,7 @@ RUN rosdep update
 RUN rosdep install -i --from-path src --rosdistro foxy -y
 
 WORKDIR /root/dd_ws
-RUN . /opt/ros/foxy/setup.sh && colcon build
+RUN . /opt/ros/foxy/setup.sh && export MAKEFLAGS="-j6" && colcon build --symlink-install
 
 RUN apt install ros-foxy-libg2o -y
 
