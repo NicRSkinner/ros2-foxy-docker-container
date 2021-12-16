@@ -97,8 +97,8 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 #Make ROS2 Workspace, install packages
 WORKDIR /root/dd_ws/src
 #RUN git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
-RUN git clone https://github.com/introlab/rtabmap.git rtabmap
-RUN git clone --branch ros2 https://github.com/introlab/rtabmap_ros.git rtabmap_ros
+#RUN git clone https://github.com/introlab/rtabmap.git rtabmap -- This is on the apt-get server now, remove after verifying bin files work
+#RUN git clone --branch ros2 https://github.com/introlab/rtabmap_ros.git rtabmap_ros -- This is on the apt-get server now, remove after verifying bin files work
 RUN git clone https://github.com/ros2-gbp/cartographer-release.git -b release/foxy/cartographer
 
 WORKDIR /root/dd_ws
