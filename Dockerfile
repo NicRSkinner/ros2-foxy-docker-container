@@ -98,8 +98,6 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 #Make ROS2 Workspace, install packages
 WORKDIR /root/dd_ws/src
 #RUN git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
-#RUN git clone https://github.com/introlab/rtabmap.git rtabmap -- This is on the apt-get server now, remove after verifying bin files work
-#RUN git clone --branch ros2 https://github.com/introlab/rtabmap_ros.git rtabmap_ros -- This is on the apt-get server now, remove after verifying bin files work
 RUN git clone https://github.com/ros2-gbp/cartographer-release.git -b release/foxy/cartographer
 
 WORKDIR /root/dd_ws
@@ -113,20 +111,14 @@ RUN . /opt/ros/foxy/setup.sh && export MAKEFLAGS="-j6" && colcon build --symlink
 
 RUN apt install ros-foxy-libg2o -y
 
-#WORKDIR /root/dd_ws
-#RUN git clone https://github.com/RainerKuemmerle/g2o.git
-#WORKDIR /root/dd_ws/g2o
-#RUN git checkout 9b41a4e
-#RUN cmake -DCMAKE_INSTALL_PREFIX=${INSTALL_ROOT} -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-std=c++11 -DBUILD_SHARED_LIBS=ON -DBUILD_UNITTESTS=OFF -DBUILD_WITH_MARCH_NATIVE=OFF -DG2O_USE_CHOLMOD=OFF -DG2O_USE_CSPARSE=ON -DG2O_USE_OPENGL=ON -DG2O_USE_OPENMP=ON .
-#RUN cmake --build .
-#RUN make install
-
-
 WORKDIR /root/dd_ws/src
 RUN git clone https://github.com/jdgalviss/realsense_ros2.git
-RUN git clone https://github.com/ros-perception/pointcloud_to_laserscan.git
-RUN git clone --recursive https://github.com/rsasaki0109/lidarslam_ros2
+#RUN git clone https://github.com/ros-perception/pointcloud_to_laserscan.git
+
+# 3D rotating LIDAR
+#RUN git clone --recursive https://github.com/rsasaki0109/lidarslam_ros2
 #RUN git clone --recursive https://github.com/rsasaki0109/ndt_omp_ros2.git
+
 WORKDIR /root/dd_ws
 RUN . /opt/ros/foxy/setup.sh && colcon build
 
