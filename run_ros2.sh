@@ -15,5 +15,6 @@ docker run -it \
     -v /home/nskinner/.gazebo:/root/.gazebo \
     -v /home/nskinner/Documents/ardak/:/root/dd_ws/ardak \
     -v /home/nskinner/Documents/ros-inc/:/opt/ros/foxy/cp \
+    -v /home/nskinner/Documents/cp:/root/dd_ws/cp \
     dockros  \
     bash

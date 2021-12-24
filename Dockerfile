@@ -34,7 +34,8 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
 # install bluetooth essentials
-#RUN apt-get install bluez bluetooth
+#RUN apt-get install -y bluez bluetooth
+RUN apt-get install -y nano
 
 # install bootstrap tools
 RUN apt-get update && apt-get install --no-install-recommends -y \
