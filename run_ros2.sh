@@ -1,4 +1,4 @@
-XAUTH=/home/nskinner/.Xauthority
+XAUTH=/home/$USER/.Xauthority
 
 docker run -it \
     --net=host \
@@ -9,12 +9,12 @@ docker run -it \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-    --runtime=nvidia \
+    --gpus all \
     -v /run/udev:/run/udev:ro \
     -v /dev:/dev \
-    -v /home/nskinner/.gazebo:/root/.gazebo \
-    -v /home/nskinner/Documents/ardak/:/root/dd_ws/ardak \
-    -v /home/nskinner/Documents/ros-inc/:/opt/ros/foxy/cp \
-    -v /home/nskinner/Documents/cp:/root/dd_ws/cp \
+    -v /home/$USER/.gazebo:/root/.gazebo \
+    -v /home/$USER/Documents/ardak/:/root/dd_ws/ardak \
+    -v /home/$USER/Documents/ros-inc/:/opt/ros/foxy/cp \
+    -v /home/$USER/Documents/cp:/root/dd_ws/cp \
     dockros  \
     bash

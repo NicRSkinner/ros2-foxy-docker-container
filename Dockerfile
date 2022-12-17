@@ -86,6 +86,9 @@ RUN apt-get install -y librealsense2-dbg
 RUN apt-get install -y ros-foxy-realsense2-camera
 RUN apt-get install -y ros-foxy-robot-localization
 RUN apt-get install -y ros-foxy-rtabmap-ros
+RUN apt-get install -y ros-foxy-joint-state-publisher
+RUN apt-get install -y ros-foxy-joint-state-publisher-gui
+RUN apt-get install -y ros-foxy-robot-state-publisher
 
 #End of ROS2 Installation
 
