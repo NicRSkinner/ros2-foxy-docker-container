@@ -89,6 +89,7 @@ RUN apt-get install -y ros-foxy-rtabmap-ros
 RUN apt-get install -y ros-foxy-joint-state-publisher
 RUN apt-get install -y ros-foxy-joint-state-publisher-gui
 RUN apt-get install -y ros-foxy-robot-state-publisher
+RUN apt-get install -y ros-foxy-xacro
 
 #End of ROS2 Installation
 
@@ -101,7 +102,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 #Make ROS2 Workspace, install packages
 WORKDIR /root/dd_ws/src
 #RUN git clone https://github.com/ros/ros_tutorials.git -b foxy-devel
-RUN git clone https://github.com/ros2-gbp/cartographer-release.git -b release/foxy/cartographer
+#RUN git clone https://github.com/ros2-gbp/cartographer-release.git -b release/foxy/cartographer
 
 WORKDIR /root/dd_ws
 RUN apt-get install python3-rosdep -y
@@ -115,7 +116,7 @@ RUN . /opt/ros/foxy/setup.sh && export MAKEFLAGS="-j6" && colcon build --symlink
 RUN apt install ros-foxy-libg2o -y
 
 WORKDIR /root/dd_ws/src
-RUN git clone https://github.com/jdgalviss/realsense_ros2.git
+#RUN git clone https://github.com/jdgalviss/realsense_ros2.git
 #RUN git clone https://github.com/ros-perception/pointcloud_to_laserscan.git
 
 # 3D rotating LIDAR
