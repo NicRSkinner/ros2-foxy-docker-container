@@ -90,7 +90,9 @@ RUN apt-get install -y ros-foxy-joint-state-publisher
 RUN apt-get install -y ros-foxy-joint-state-publisher-gui
 RUN apt-get install -y ros-foxy-robot-state-publisher
 RUN apt-get install -y ros-foxy-xacro
-
+RUN apt-get install -y ros-foxy-gazebo-ros
+RUN apt-get install -y ros-foxy-gazebo-plugins
+RUN apt-get install -y ros-foxy-camera-info-manager
 #End of ROS2 Installation
 
 #Nvidia config for GUI
@@ -134,8 +136,8 @@ RUN pip3 install \
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# install Gazebo
-RUN curl -sSL http://get.gazebosim.org | sh
+# install Gazebo -- THIS IS NTHE NON-ROS SPECIFIC VERSION
+#RUN curl -sSL http://get.gazebosim.org | sh
 
 #entrypoint for ROS2
 COPY ros2_entrypoint.sh /root/.
