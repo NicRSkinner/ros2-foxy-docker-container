@@ -93,6 +93,11 @@ RUN apt-get install -y ros-foxy-xacro
 RUN apt-get install -y ros-foxy-gazebo-ros
 RUN apt-get install -y ros-foxy-gazebo-plugins
 RUN apt-get install -y ros-foxy-camera-info-manager
+RUN apt-get install -y ros-foxy-nav2-bringup
+
+#Debug Packages
+RUN apt-get install -y ros-foxy-rqt-tf-tree
+#End of Debug Packages
 #End of ROS2 Installation
 
 #Nvidia config for GUI
